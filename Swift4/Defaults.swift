@@ -30,6 +30,8 @@ import Foundation
 class Defaults{
 var supportedProximityUUIDs:NSArray = []
 var defaultPower = 0
+let BeaconIdentifier = "com.example.apple-samplecode.AirLocate"
+    
 
     init(){
         var uid1 = NSUUID(UUIDString: "E2C56DB5-DFFB-48D2-B060-D0F5A71096E0")

@@ -12,8 +12,7 @@ import CoreBluetooth;
 
 class ConfigurationViewController: UITableViewController,CBPeripheralManagerDelegate, UITextFieldDelegate {
     
-    let BeaconIdentifier = "com.example.apple-samplecode.AirLocate"
-    
+     
     var peripheralManager: CBPeripheralManager?;
     var region: CLBeaconRegion?;
     var power:NSNumber?;
@@ -143,7 +142,7 @@ class ConfigurationViewController: UITableViewController,CBPeripheralManagerDele
             // init(proximityUUID: NSUUID!, major: CLBeaconMajorValue, minor: CLBeaconMinorValue, identifier: String!)
             var maj: UInt16 = UInt16(major.intValue)
             var min: UInt16 = UInt16(minor.intValue)
-            region = CLBeaconRegion(proximityUUID: uuid, major: min, minor: min, identifier: BeaconIdentifier)
+            region = CLBeaconRegion(proximityUUID: uuid, major: min, minor: min, identifier: Defaults.sharedDefaults().BeaconIdentifier)
             peripheralData = region!.peripheralDataWithMeasuredPower(power)
             // The region's peripheral data contains the CoreBluetooth-specific data we need to advertise.
             if(peripheralData){
