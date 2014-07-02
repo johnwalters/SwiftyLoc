@@ -18,7 +18,7 @@ class ConfigurationViewController: UITableViewController,CBPeripheralManagerDele
     var power:NSNumber?;
     
     @IBOutlet var enabledSwitch: UISwitch
-    @IBOutlet var majorTextField: UITextField
+    @IBOutlet weak var majorTextField: UITextField
     @IBOutlet var uuidTextField: UITextField
     @IBOutlet var minorTextField: UITextField
     @IBOutlet var powerTextField: UITextField
@@ -101,7 +101,7 @@ class ConfigurationViewController: UITableViewController,CBPeripheralManagerDele
     }
     
     func textFieldDidEndEditing(textfield: UITextField){
-                switch (textfield){
+        switch (textfield){
         case self.majorTextField:
             major = numberFormatter!.numberFromString(textfield.text)
         case self.minorTextField:

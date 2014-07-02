@@ -6,16 +6,80 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Swift4/MonitoringViewController.swift"
-            timestampString = "425830201.853658"
+            timestampString = "425955974.470977"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
-            landmarkName = "viewWillAppear(_:)"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
+            landmarkName = "toggleEnabled(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Swift4/MonitoringViewController.swift"
+            timestampString = "425955974.470977"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
+            landmarkName = "toggleNotifyOnEntry(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Swift4/MonitoringViewController.swift"
+            timestampString = "425955974.470977"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
+            landmarkName = "toggleNotifyOnExit(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Swift4/MonitoringViewController.swift"
+            timestampString = "425955974.470977"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
+            landmarkName = "toggleNotifyOnDisplay(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Swift4/MonitoringViewController.swift"
+            timestampString = "425954999.748906"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
+            landmarkName = "viewDidLoad()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -26,43 +90,59 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Swift4/MonitoringViewController.swift"
-            timestampString = "425830201.853658"
+            timestampString = "425955445.119433"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
-            landmarkName = "unwindUUIDSelector(_:)"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "viewDidLoad()"
             landmarkType = "5">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Swift4.MonitoringViewController.unwindUUIDSelector (Swift4.MonitoringViewController)(ObjectiveC.UIStoryboardSegue) -&gt; ()"
+                  symbolName = "Swift4.MonitoringViewController.viewDidLoad (Swift4.MonitoringViewController)() -&gt; ()"
                   moduleName = "Swift4"
-                  urlString = "file:///Users/johnwalters/Projects/XCode%20Projects/Swift4/Swift4/MonitoringViewController.swift"
-                  timestampString = "425771312.848871"
+                  urlString = "file:///Users/johnwalters/Projects/XCode%20Projects/SwiftyLoc/Swift4/MonitoringViewController.swift"
+                  timestampString = "425955445.128255"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "31"
-                  endingLineNumber = "31"
-                  offsetFromSymbolStart = "38">
+                  startingLineNumber = "49"
+                  endingLineNumber = "49"
+                  offsetFromSymbolStart = "2194">
                </Location>
                <Location
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Swift4.MonitoringViewController.unwindUUIDSelector (Swift4.MonitoringViewController)(ObjectiveC.UIStoryboardSegue) -&gt; ()"
+                  symbolName = "Swift4.MonitoringViewController.viewDidLoad (Swift4.MonitoringViewController)() -&gt; ()"
                   moduleName = "Swift4"
-                  urlString = "file:///Users/johnwalters/Projects/XCode%20Projects/Swift4/Swift4/MonitoringViewController.swift"
-                  timestampString = "425771312.849118"
+                  urlString = "file:///Users/johnwalters/Projects/XCode%20Projects/SwiftyLoc/Swift4/MonitoringViewController.swift"
+                  timestampString = "425955445.12857"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "31"
-                  endingLineNumber = "31"
-                  offsetFromSymbolStart = "183">
+                  startingLineNumber = "49"
+                  endingLineNumber = "49"
+                  offsetFromSymbolStart = "2220">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Swift4/MonitoringViewController.swift"
+            timestampString = "425955974.470977"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

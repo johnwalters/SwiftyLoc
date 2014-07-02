@@ -10,7 +10,7 @@ import UIKit
 import CoreLocation;
 import CoreBluetooth;
 
-class MonitoringViewController : UITableViewController, CLLocationManagerDelegate {
+class MonitoringViewController : UITableViewController, CLLocationManagerDelegate, UITextFieldDelegate {
     var uuid:NSUUID = NSUUID(UUIDString: "")
     var enabled:Bool=false;
     var major:NSNumber=0
@@ -29,10 +29,10 @@ class MonitoringViewController : UITableViewController, CLLocationManagerDelegat
     @IBOutlet var notifyOnEntrySwitch: UISwitch
     @IBOutlet var notifyOnExitSwitch: UISwitch
     @IBOutlet var notifyOnDisplaySwitch: UISwitch
-    @IBOutlet var majorTextField: UITextField
     @IBOutlet var uuidTextField: UITextField
     @IBOutlet var minorTextField: UITextField
     
+    @IBOutlet var majorTextField: UITextField
     override func viewDidLoad(){
         
         super.viewDidLoad()
@@ -41,6 +41,8 @@ class MonitoringViewController : UITableViewController, CLLocationManagerDelegat
 
         numberFormatter = NSNumberFormatter()
         numberFormatter.numberStyle = NSNumberFormatterStyle.DecimalStyle
+        
+        
 
         var region = CLBeaconRegion(proximityUUID: NSUUID.UUID(), identifier: Defaults.sharedDefaults().BeaconIdentifier)
         region = locationManager!.monitoredRegions.member(region) as CLBeaconRegion
@@ -71,9 +73,80 @@ class MonitoringViewController : UITableViewController, CLLocationManagerDelegat
         super.viewWillAppear(animated)
         
         uuidTextField.text = uuid.UUIDString
+        enabledSwitch.on = enabled;
+        notifyOnEntrySwitch.on = notifyOnEntry;
+        notifyOnExitSwitch.on = notifyOnExit;
+        notifyOnDisplaySwitch.on = self.notifyOnDisplay;
+    }
+
+    @IBAction func toggleEnabled(sender: UISwitch){
+        enabled = sender.on
+        updateMonitoredRegion()
+    }
+    
+    @IBAction func toggleNotifyOnEntry(sender: UISwitch){
+        notifyOnEntry = sender.on
+        updateMonitoredRegion()
+    }
+    
+    @IBAction func toggleNotifyOnExit(sender: UISwitch){
+        notifyOnExit = sender.on
+        updateMonitoredRegion()
+    }
+    
+    @IBAction func toggleNotifyOnDisplay(sender: UISwitch){
+        notifyOnDisplay = sender.on
+        updateMonitoredRegion()
+    }
+
+    
+    func textfieldShouldBeginEditing(textfield:UITextField) -> Bool{
+
+        if textfield == uuidTextField {
+            performSegueWithIdentifier("selectUUID", sender: self)
+            return false
+        }
+        return true
+    }
+    
+    
+    func textFieldDidBeginEditing(textfield: UITextField){
+        navigationItem.rightBarButtonItem = doneButton
+    }
+    
+    func textFieldDidEndEditing(textfield: UITextField){
         
+        switch (textfield){
+        case self.majorTextField:
+            major = numberFormatter.numberFromString(textfield.text)
+        case self.minorTextField:
+            minor = numberFormatter.numberFromString(textfield.text)
+        
+        default:
+            println("not expected text field")
+        }
+        navigationItem.rightBarButtonItem = nil
+        
+        updateMonitoredRegion()
         
     }
+    
+ 
+    @IBAction func doneEditing(sender: AnyObject!){
+        majorTextField.resignFirstResponder()
+        minorTextField.resignFirstResponder()
+        tableView.reloadData()
+        
+    }
+
+
+    override func  prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!){
+        if segue?.identifier == "selectUUID" {
+           var uuidSelector : UUIDViewController = segue.destinationViewController as UUIDViewController
+            uuidSelector.uuid = uuid
+        }
+    }
+
 
     @IBAction func unwindUUIDSelector(sender: UIStoryboardSegue) {
         var uuidSelector : UUIDViewController = sender.sourceViewController as UUIDViewController
