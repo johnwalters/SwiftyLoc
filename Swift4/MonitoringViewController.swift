@@ -20,6 +20,10 @@ class MonitoringViewController : UITableViewController, CLLocationManagerDelegat
     var notifyOnDisplay = false
 
     var locationManager: CLLocationManager?
+    var numberFormatter = NSNumberFormatter()
+    
+    var doneButton: UIBarButtonItem?
+    
     
     @IBOutlet var enabledSwitch: UISwitch
     @IBOutlet var notifyOnEntrySwitch: UISwitch
@@ -34,6 +38,34 @@ class MonitoringViewController : UITableViewController, CLLocationManagerDelegat
         super.viewDidLoad()
         locationManager = CLLocationManager()
         locationManager!.delegate = self;
+
+        numberFormatter = NSNumberFormatter()
+        numberFormatter.numberStyle = NSNumberFormatterStyle.DecimalStyle
+
+        var region = CLBeaconRegion(proximityUUID: NSUUID.UUID(), identifier: Defaults.sharedDefaults().BeaconIdentifier)
+        region = locationManager!.monitoredRegions.member(region) as CLBeaconRegion
+        if(region != nil){
+            enabled = true;
+            uuid = region.proximityUUID;
+            major = region.major;
+            majorTextField.text = major.stringValue
+            minor = region.minor;
+            minorTextField.text = minor.stringValue
+            notifyOnEntry = region.notifyOnEntry;
+            notifyOnExit = region.notifyOnExit;
+            notifyOnDisplay = region.notifyEntryStateOnDisplay;
+        } else {
+            enabled = false;
+            uuid = Defaults.sharedDefaults().defaultProximityUUID()
+            major = 0
+            minor = 0;
+            notifyOnEntry = true
+            notifyOnExit = true;
+            notifyOnDisplay = false;
+        }
+
+        doneButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Done, target: self, action: "doneEditing:")
+      
     }
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
