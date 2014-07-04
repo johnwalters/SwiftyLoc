@@ -44,18 +44,18 @@ class MonitoringViewController : UITableViewController, CLLocationManagerDelegat
         
         
 
-        var region = CLBeaconRegion(proximityUUID: NSUUID.UUID(), identifier: Defaults.sharedDefaults().BeaconIdentifier)
-        region = locationManager!.monitoredRegions.member(region) as CLBeaconRegion
-        if(region != nil){
+        var region: CLBeaconRegion? = CLBeaconRegion(proximityUUID: NSUUID.UUID(), identifier: Defaults.sharedDefaults().BeaconIdentifier)
+        region = locationManager!.monitoredRegions.member(region) as? CLBeaconRegion
+        if(region){
             enabled = true;
-            uuid = region.proximityUUID;
-            major = region.major;
+            uuid = region!.proximityUUID;
+            major = region!.major;
             majorTextField.text = major.stringValue
-            minor = region.minor;
+            minor = region!.minor;
             minorTextField.text = minor.stringValue
-            notifyOnEntry = region.notifyOnEntry;
-            notifyOnExit = region.notifyOnExit;
-            notifyOnDisplay = region.notifyEntryStateOnDisplay;
+            notifyOnEntry = region!.notifyOnEntry;
+            notifyOnExit = region!.notifyOnExit;
+            notifyOnDisplay = region!.notifyEntryStateOnDisplay;
         } else {
             enabled = false;
             uuid = Defaults.sharedDefaults().defaultProximityUUID()
@@ -73,6 +73,8 @@ class MonitoringViewController : UITableViewController, CLLocationManagerDelegat
         super.viewWillAppear(animated)
         
         uuidTextField.text = uuid.UUIDString
+        majorTextField.text = major.stringValue
+        minorTextField.text = minor.stringValue
         enabledSwitch.on = enabled;
         notifyOnEntrySwitch.on = notifyOnEntry;
         notifyOnExitSwitch.on = notifyOnExit;

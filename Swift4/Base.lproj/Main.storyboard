@@ -219,6 +219,7 @@
                     <navigationItem key="navigationItem" title="Monitor" id="9rk-fP-Cuf"/>
                     <connections>
                         <outlet property="enabledSwitch" destination="khj-sU-aZs" id="qnj-CQ-WDN"/>
+                        <outlet property="majorTextField" destination="TIv-Xp-nK4" id="giT-73-A0a"/>
                         <outlet property="minorTextField" destination="waP-xm-Gmq" id="EGE-am-39m"/>
                         <outlet property="notifyOnDisplaySwitch" destination="Uu2-RB-Dbi" id="LJY-Wt-AMY"/>
                         <outlet property="notifyOnEntrySwitch" destination="t5s-Fl-Szm" id="hag-QW-zTL"/>
@@ -541,6 +542,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="YvX-ka-yKo"/>
+        <segue reference="Waa-1h-Bjk"/>
     </inferredMetricsTieBreakers>
 </document>

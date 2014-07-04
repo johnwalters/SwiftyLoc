@@ -21,6 +21,7 @@
 		07B2C2DB19575DC1007342CC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B2C2DA19575DC1007342CC /* UIKit.framework */; };
 		07B2C2DD19575DC9007342CC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B2C2DC19575DC9007342CC /* Foundation.framework */; };
 		07B2C2DF19575DD1007342CC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B2C2DE19575DD1007342CC /* CoreGraphics.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		07DDDDE0196399F100781AF6 /* TestMonitoringViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DDDDDF196399F100781AF6 /* TestMonitoringViewController.swift */; };
 		07DE10EA1960A0DA006D47FC /* MonitoringViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DE10E91960A0DA006D47FC /* MonitoringViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +54,7 @@
 		07B2C2DA19575DC1007342CC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		07B2C2DC19575DC9007342CC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		07B2C2DE19575DD1007342CC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		07DDDDDF196399F100781AF6 /* TestMonitoringViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestMonitoringViewController.swift; sourceTree = "<group>"; };
 		07DE10E91960A0DA006D47FC /* MonitoringViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonitoringViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -109,6 +111,7 @@
 				07DE10E91960A0DA006D47FC /* MonitoringViewController.swift */,
 				074C7F9B195E8C3600772590 /* UUIDViewController.swift */,
 				07B2C2B319574D89007342CC /* Supporting Files */,
+				07DDDDDF196399F100781AF6 /* TestMonitoringViewController.swift */,
 			);
 			path = Swift4;
 			sourceTree = "<group>";
@@ -254,6 +257,7 @@
 			files = (
 				07B2C2BA19574D89007342CC /* DetailViewController.swift in Sources */,
 				07B2C2D519575C5C007342CC /* ConfigurationViewController.swift in Sources */,
+				07DDDDE0196399F100781AF6 /* TestMonitoringViewController.swift in Sources */,
 				07210FBA1959BF40007AD523 /* Defaults.swift in Sources */,
 				074C7F9C195E8C3600772590 /* UUIDViewController.swift in Sources */,
 				07B2C2B819574D89007342CC /* MasterViewController.swift in Sources */,
