@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		07210FBA1959BF40007AD523 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07210FB91959BF40007AD523 /* Defaults.swift */; };
 		074C7F9C195E8C3600772590 /* UUIDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074C7F9B195E8C3600772590 /* UUIDViewController.swift */; };
+		078A23111967416200BF7312 /* RangingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078A23101967416200BF7312 /* RangingViewController.swift */; };
 		07B2C2B619574D89007342CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B2C2B519574D89007342CC /* AppDelegate.swift */; };
 		07B2C2B819574D89007342CC /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B2C2B719574D89007342CC /* MasterViewController.swift */; };
 		07B2C2BA19574D89007342CC /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B2C2B919574D89007342CC /* DetailViewController.swift */; };
@@ -38,6 +39,7 @@
 /* Begin PBXFileReference section */
 		07210FB91959BF40007AD523 /* Defaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		074C7F9B195E8C3600772590 /* UUIDViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UUIDViewController.swift; sourceTree = "<group>"; };
+		078A23101967416200BF7312 /* RangingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RangingViewController.swift; sourceTree = "<group>"; };
 		07B2C2B019574D89007342CC /* Swift4.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Swift4.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07B2C2B419574D89007342CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		07B2C2B519574D89007342CC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 				074C7F9B195E8C3600772590 /* UUIDViewController.swift */,
 				07B2C2B319574D89007342CC /* Supporting Files */,
 				07DDDDDF196399F100781AF6 /* TestMonitoringViewController.swift */,
+				078A23101967416200BF7312 /* RangingViewController.swift */,
 			);
 			path = Swift4;
 			sourceTree = "<group>";
@@ -257,6 +260,7 @@
 			files = (
 				07B2C2BA19574D89007342CC /* DetailViewController.swift in Sources */,
 				07B2C2D519575C5C007342CC /* ConfigurationViewController.swift in Sources */,
+				078A23111967416200BF7312 /* RangingViewController.swift in Sources */,
 				07DDDDE0196399F100781AF6 /* TestMonitoringViewController.swift in Sources */,
 				07210FBA1959BF40007AD523 /* Defaults.swift in Sources */,
 				074C7F9C195E8C3600772590 /* UUIDViewController.swift in Sources */,
