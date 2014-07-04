@@ -111,10 +111,10 @@
 				07B2C2B919574D89007342CC /* DetailViewController.swift */,
 				07B2C2B719574D89007342CC /* MasterViewController.swift */,
 				07DE10E91960A0DA006D47FC /* MonitoringViewController.swift */,
-				074C7F9B195E8C3600772590 /* UUIDViewController.swift */,
+				078A23101967416200BF7312 /* RangingViewController.swift */,
 				07B2C2B319574D89007342CC /* Supporting Files */,
 				07DDDDDF196399F100781AF6 /* TestMonitoringViewController.swift */,
-				078A23101967416200BF7312 /* RangingViewController.swift */,
+				074C7F9B195E8C3600772590 /* UUIDViewController.swift */,
 			);
 			path = Swift4;
 			sourceTree = "<group>";

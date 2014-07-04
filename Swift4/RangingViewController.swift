@@ -102,19 +102,29 @@ class RangingViewController : UITableViewController, CLLocationManagerDelegate {
 //    {
 //    [allBeacons addObjectsFromArray:regionResult];
 //    }
-//    
-//    for (NSNumber *range in @[@(CLProximityUnknown), @(CLProximityImmediate), @(CLProximityNear), @(CLProximityFar)])
-//    {
-//    NSArray *proximityBeacons = [allBeacons filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"proximity = %d", [range intValue]]];
-//    if([proximityBeacons count])
-//    {
-//    self.beacons[range] = proximityBeacons;
-//    }
-//    }
-//    
-//    [self.tableView reloadData];
-//    }
-//    
+    
+    func locationManager(manager: CLLocationManager!, beacons: NSArray, region: CLBeaconRegion!){
+            /*
+            CoreLocation will call this delegate method at 1 Hz with updated range information.
+            Beacons will be categorized and displayed by proximity.  A beacon can belong to multiple
+            regions.  It will be displayed multiple times if that is the case.  If that is not desired,
+            use a set instead of an array.
+            */
+        self.rangedRegions[region] = beacons
+        self.beacons.removeAllObjects()
+        var allBeacons = NSMutableArray()
+        for regionResult : AnyObject in self.rangedRegions.allValues{
+            var regionResultArry = regionResult as NSArray
+            allBeacons.addObjectsFromArray(regionResult as NSArray)
+        }
+        let ranges = [CLProximity.Unknown,CLProximity.Immediate,CLProximity.Near,CLProximity.Far]
+        for range in ranges {
+            var a = 2
+            var proximityBeacons: NSArray = allBeacons.filteredArrayUsingPredicate(NSPredicate(format: "proximity = %d",  [range.toRaw()]))
+        }
+        self.tableView.reloadData()
+        }
+
 //    
 //    #pragma mark - Table view data source
 //    
