@@ -119,14 +119,11 @@ class RangingViewController : UITableViewController, CLLocationManagerDelegate {
 
         // Display the UUID, major, minor and accuracy for each beacon.
         let sectionKey : NSNumber = self.beacons.allKeys[indexPath.section] as NSNumber
-        let keyedItem : AnyObject!   = self.beacons[indexPath.section]
+        let keyedItem : NSArray  = self.beacons[indexPath.section] as NSArray
         let indexPathRow = indexPath.row
-//        let b = keyedItem[indexPathRow]
-        // sourceKit error with the following lines of code
-        // http://stackoverflow.com/questions/24006206/sourcekitservice-terminated
-        let beacon = CLBeacon()
+
         
-//        let b:CLBeacon = keyedItem[indexPathRow] as CLBeacon
+        let beacon:CLBeacon = keyedItem[indexPathRow] as CLBeacon
         cell.textLabel.text = beacon.proximityUUID.UUIDString
         var formatString = NSLocalizedString("Major: %@, Minor: %@, Acc: %.2fm", comment: "Format string for ranging table cells.")
         cell.detailTextLabel.text = NSString(format: formatString,beacon.major,beacon.minor,beacon.accuracy)
