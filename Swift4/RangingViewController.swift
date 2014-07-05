@@ -112,23 +112,27 @@ class RangingViewController : UITableViewController, CLLocationManagerDelegate {
         return title
     }
   
-//    
-//    
-//    - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-//    {
-//    static NSString *identifier = @"Cell";
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-//    
-//    // Display the UUID, major, minor and accuracy for each beacon.
-//    NSNumber *sectionKey = [self.beacons allKeys][indexPath.section];
-//    CLBeacon *beacon = self.beacons[sectionKey][indexPath.row];
-//    cell.textLabel.text = [beacon.proximityUUID UUIDString];
-//    
-//    NSString *formatString = NSLocalizedString(@"Major: %@, Minor: %@, Acc: %.2fm", @"Format string for ranging table cells.");
-//    cell.detailTextLabel.text = [NSString stringWithFormat:formatString, beacon.major, beacon.minor, beacon.accuracy];
-//    
-//    return cell;
-//    }
-//
-//    
+
+    override func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
+        var identifier = "Cell"
+        var cell : UITableViewCell = tableView.dequeueReusableCellWithIdentifier(identifier) as UITableViewCell
+
+        // Display the UUID, major, minor and accuracy for each beacon.
+        let sectionKey : NSNumber = self.beacons.allKeys[indexPath.section] as NSNumber
+        let keyedItem : AnyObject!   = self.beacons[indexPath.section]
+        let indexPathRow = indexPath.row
+//        let b = keyedItem[indexPathRow]
+        // sourceKit error with the following lines of code
+        // http://stackoverflow.com/questions/24006206/sourcekitservice-terminated
+        let beacon = CLBeacon()
+        
+//        let b:CLBeacon = keyedItem[indexPathRow] as CLBeacon
+        cell.textLabel.text = beacon.proximityUUID.UUIDString
+        var formatString = NSLocalizedString("Major: %@, Minor: %@, Acc: %.2fm", comment: "Format string for ranging table cells.")
+        cell.detailTextLabel.text = NSString(format: formatString,beacon.major,beacon.minor,beacon.accuracy)
+
+        return cell
+
+    }
+
 }
