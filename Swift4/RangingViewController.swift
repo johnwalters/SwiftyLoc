@@ -12,24 +12,13 @@ import CoreLocation
 
 class RangingViewController : UITableViewController, CLLocationManagerDelegate {
     
-//    #import "APLDefaults.h"
-//    @import CoreLocation;
-//    
-//    
-//    @interface APLRangingViewController () <CLLocationManagerDelegate>
-//    
-//    @property NSMutableDictionary *beacons;
+
     var beacons: NSMutableDictionary
-//    @property CLLocationManager *locationManager;
+
     var locationManager: CLLocationManager
-//    @property NSMutableDictionary *rangedRegions;
+
     var rangedRegions: NSMutableDictionary
-//    
-//    @end
-//    
-//    
-//    @implementation APLRangingViewController
-//    
+ 
     init(coder: NSCoder!) {
         beacons = NSMutableDictionary()
         locationManager = CLLocationManager()
@@ -49,17 +38,7 @@ class RangingViewController : UITableViewController, CLLocationManagerDelegate {
             rangedRegions[region] = NSArray.array()
         }
       }
-//
-//    - (void)viewDidAppear:(BOOL)animated
-//    {
-//    [super viewDidAppear:animated];
-//    
-//    // Start ranging when the view appears.
-//    for (CLBeaconRegion *region in self.rangedRegions)
-//    {
-//    [self.locationManager startRangingBeaconsInRegion:region];
-//    }
-//    }
+
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 
@@ -81,27 +60,7 @@ class RangingViewController : UITableViewController, CLLocationManagerDelegate {
     }
     
 
-//    
-//    
-//    #pragma mark - Location manager delegate
-//    
-//    - (void)locationManager:(CLLocationManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(CLBeaconRegion *)region
-//    {
-//    /*
-//    CoreLocation will call this delegate method at 1 Hz with updated range information.
-//    Beacons will be categorized and displayed by proximity.  A beacon can belong to multiple
-//    regions.  It will be displayed multiple times if that is the case.  If that is not desired,
-//    use a set instead of an array.
-//    */
-//    self.rangedRegions[region] = beacons;
-//    [self.beacons removeAllObjects];
-//    
-//    NSMutableArray *allBeacons = [NSMutableArray array];
-//    
-//    for (NSArray *regionResult in [self.rangedRegions allValues])
-//    {
-//    [allBeacons addObjectsFromArray:regionResult];
-//    }
+
     
     func locationManager(manager: CLLocationManager!, beacons: NSArray, region: CLBeaconRegion!){
             /*
@@ -125,51 +84,34 @@ class RangingViewController : UITableViewController, CLLocationManagerDelegate {
         self.tableView.reloadData()
         }
 
-//    
-//    #pragma mark - Table view data source
-//    
-//    - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-//    {
-//    return self.beacons.count;
-//    }
-//    
-//    
-//    - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-//    {
-//    NSArray *sectionValues = [self.beacons allValues];
-//    return [sectionValues[section] count];
-//    }
-//    
-//    
-//    - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-//    {
-//    NSString *title;
-//    NSArray *sectionKeys = [self.beacons allKeys];
-//    
-//    // The table view will display beacons by proximity.
-//    NSNumber *sectionKey = sectionKeys[section];
-//    
-//    switch([sectionKey integerValue])
-//    {
-//    case CLProximityImmediate:
-//    title = NSLocalizedString(@"Immediate", @"Immediate section header title");
-//    break;
-//    
-//    case CLProximityNear:
-//    title = NSLocalizedString(@"Near", @"Near section header title");
-//    break;
-//    
-//    case CLProximityFar:
-//    title = NSLocalizedString(@"Far", @"Far section header title");
-//    break;
-//    
-//    default:
-//    title = NSLocalizedString(@"Unknown", @"Unknown section header title");
-//    break;
-//    }
-//    
-//    return title;
-//    }
+
+    override func numberOfSectionsInTableView(tableView: UITableView!) -> Int {
+        return self.beacons.count
+    }
+
+    override func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
+        var sectionValues = self.beacons.allValues
+        return sectionValues[section].count
+    }
+
+    override func tableView(tableView: UITableView!, titleForHeaderInSection section: Int) -> String! {
+        var title:String
+        var sectionKeys = beacons.allKeys
+        var sectionKey = sectionKeys[section] as NSNumber
+        switch sectionKey{
+        case CLProximity.Immediate.toRaw():
+            title = NSLocalizedString("Immediate", comment: "Immediate section header title")
+        case CLProximity.Near.toRaw():
+            title = NSLocalizedString("Near", comment: "Near section header title")
+        case CLProximity.Far.toRaw():
+            title = NSLocalizedString("Far", comment: "Far section header title")
+        default:
+            title = NSLocalizedString("Unknown", comment: "Unknown section header title")
+
+        }
+        return title
+    }
+  
 //    
 //    
 //    - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
