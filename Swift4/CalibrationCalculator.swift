@@ -68,7 +68,11 @@ class CalibrationCalculator : NSObject,CLLocationManagerDelegate {
     func locationManager(manager: CLLocationManager!, didRangeBeacons beacons: AnyObject[]!, inRegion region: CLBeaconRegion!){
         //    // CoreLocation will call this delegate method at 1 Hz with updated range information.
         //    @synchronized(self)
-        //    {
+//        //    {
+//        swift's equivalant to @synchronized(self) {}
+//        objc_sync_enter(self)
+//            ... synchronized code ...
+//                objc_sync_exit(self)
         rangedBeacons.addObject(beacons)
 //        if progressHandler {
             dispatch_async(dispatch_get_main_queue(),
@@ -98,8 +102,8 @@ class CalibrationCalculator : NSObject,CLLocationManagerDelegate {
         // Bump the completion callback to the UI thread as we'll be updating the UI.
         var measuredPower:NSInteger = 0;
         //            NSDictionary *userInfo = @{ NSLocalizedDescriptionKey : localizedErrorString };
-        var userInfo:NSDictionary = NSDictionary()
-// NSError *error = [NSError errorWithDomain:AppErrorDomain code:4 userInfo:userInfo];
+        var localizedErrorString = NSLocalizedString("Calibration is already in progress", comment: "Error string");
+        var userInfo:NSDictionary = NSDictionary(object: localizedErrorString,forKey: NSLocalizedDescriptionKey)
         var error:NSError = NSError(domain: AppErrorDomain, code: 4, userInfo: userInfo)
             dispatch_async(dispatch_get_main_queue()) {self.completionHandler(measuredPower, error)} ;
         
