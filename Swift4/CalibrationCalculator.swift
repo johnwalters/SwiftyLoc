@@ -6,40 +6,12 @@
 //  Copyright (c) 2014 Lapizon. All rights reserved.
 //
 
-//
-//
-//@import CoreLocation;
-//
-//typedef void (^APLCalibrationProgressHandler)(float percentComplete);
-//typedef void (^APLCalibrationCompletionHandler)(NSInteger measuredPower, NSError *error);
-//
-//static const NSTimeInterval ALCalibrationDwell = 20.0f;
-//
-//NSString *AppErrorDomain = @"com.example.apple-samplecode.AirLocate";
-//
-//
-//
-//@interface APLCalibrationCalculator()
-//
-//@property CLLocationManager *locationManager;
-//@property CLBeaconRegion *region;
-//@property (getter=isCalibrating) BOOL calibrating;
-//@property NSMutableArray *rangedBeacons;
-//@property NSTimer *timer;
-//
-//@property (strong) APLCalibrationProgressHandler progressHandler;
-//@property (strong) APLCalibrationCompletionHandler completionHandler;
-//
-//@property float percentComplete;
-//
-//@end
-//
-//
+
 
 import CoreLocation
 
 class CalibrationCalculator : NSObject,CLLocationManagerDelegate {
-    let CalibrationDwell:Float = 20.0
+    let CalibrationDwell:NSTimeInterval = 20.0
     var locationManager:CLLocationManager
     var region:CLBeaconRegion
     var isCalibrating = false
@@ -66,36 +38,25 @@ class CalibrationCalculator : NSObject,CLLocationManagerDelegate {
     }
     
     func locationManager(manager: CLLocationManager!, didRangeBeacons beacons: AnyObject[]!, inRegion region: CLBeaconRegion!){
-        //    // CoreLocation will call this delegate method at 1 Hz with updated range information.
-        //    @synchronized(self)
-//        //    {
+
 //        swift's equivalant to @synchronized(self) {}
 //        objc_sync_enter(self)
 //            ... synchronized code ...
 //                objc_sync_exit(self)
+        
+//        http://stackoverflow.com/questions/24045895/what-is-the-swift-equivalent-to-objective-cs-synchronized
+        objc_sync_enter(self)
         rangedBeacons.addObject(beacons)
 //        if progressHandler {
             dispatch_async(dispatch_get_main_queue(),
                 {
                     var bump:Float = (self.increment1 + 1)
-                    bump = bump / self.CalibrationDwell
+                    bump = bump / Float(self.CalibrationDwell)
                     self.percentComplete = bump
                     self.progressHandler(self.percentComplete!)
                 }
         )
-//        }
-        //        [_rangedBeacons addObject:beacons];
-        //
-        //        if(_progressHandler)
-        //        {
-        //            dispatch_async(dispatch_get_main_queue(), ^{
-        //                // Bump the progress callback back to the UI thread as we'll be updating the UI.
-        //                _percentComplete += 1.0f / ALCalibrationDwell;
-        //                _progressHandler(_percentComplete);
-        //                });
-        //        }
-        //    }
-        //    }
+        objc_sync_exit(self)
     }
     
     func timerElapsed(sender:AnyObject){
@@ -108,75 +69,48 @@ class CalibrationCalculator : NSObject,CLLocationManagerDelegate {
             dispatch_async(dispatch_get_main_queue()) {self.completionHandler(measuredPower, error)} ;
         
     }
+    
+    func performCalibrationWithProgressHandler(progressHandler:((Float)->Void)) {
+        objc_sync_enter(self)
+            if !isCalibrating {
+                isCalibrating = true;
+                rangedBeacons.removeAllObjects()
+                percentComplete = 0.0
+                self.progressHandler = progressHandler
+                locationManager.startRangingBeaconsInRegion(region)
+                var interval0:Double = Double(0)
+                var calibrationDwellDate = NSDate(timeIntervalSinceNow: 0)
+                timer = NSTimer(fireDate: calibrationDwellDate, interval: 0, target: self, selector: "timerElapsed:", userInfo: nil, repeats: false)
+                NSRunLoop.currentRunLoop().addTimer(timer, forMode: NSDefaultRunLoopMode)
+            } else {
+                // Send back an error if calibration is already in progress.
+                var localizedErrorString = NSLocalizedString("Calibration is already in progress", comment: "Error string");
+                var userInfo:NSDictionary = NSDictionary(object: localizedErrorString,forKey: NSLocalizedDescriptionKey)
+                var error:NSError = NSError(domain: AppErrorDomain, code: 4, userInfo: userInfo)
+                dispatch_async(dispatch_get_main_queue()) {self.completionHandler(0, error)} ;
+
+            }
+        objc_sync_exit(self)
+    }
+    
+    
+func cancelCalibration(){
+    objc_sync_enter(self)
+        if isCalibrating {
+            isCalibrating=false
+            timer.fire()
+            
+        }
+        dispatch_get_main_queue()
+    objc_sync_exit(self)
+    }
 }
 
 
-//    
-//    - (void)locationManager:(CLLocationManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(CLBeaconRegion *)region
 
-//{
-//    // CoreLocation will call this delegate method at 1 Hz with updated range information.
-//    @synchronized(self)
-//    {
-//        [_rangedBeacons addObject:beacons];
-//        
-//        if(_progressHandler)
-//        {
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                // Bump the progress callback back to the UI thread as we'll be updating the UI.
-//                _percentComplete += 1.0f / ALCalibrationDwell;
-//                _progressHandler(_percentComplete);
-//                });
-//        }
-//    }
-//    }
-//    
-//    - (void)performCalibrationWithProgressHandler:(APLCalibrationProgressHandler)handler
-//{
-//    @synchronized(self)
-//    {
-//        if(!self.calibrating)
-//        {
-//            // Calibration consists of collecting RSSI samples for 20 seconds.
-//            // Once we have all the samples we will average the mid-80th percentile in timerElapsed:.
-//            self.calibrating = YES;
-//            [self.rangedBeacons removeAllObjects];
-//            
-//            self.percentComplete = 0.0f;
-//            self.progressHandler = [handler copy];
-//            
-//            [self.locationManager startRangingBeaconsInRegion:self.region];
-//            
-//            self.timer = [[NSTimer alloc] initWithFireDate:[NSDate dateWithTimeIntervalSinceNow:ALCalibrationDwell] interval:0 target:self selector:@selector(timerElapsed:) userInfo:nil repeats:NO];
-//            [[NSRunLoop currentRunLoop] addTimer:self.timer  forMode:NSDefaultRunLoopMode];
-//        }
-//        else
-//        {
-//            // Send back an error if calibration is already in progress.
-//            NSString *localizedErrorString = NSLocalizedString(@"Calibration is already in progress", @"Error string");
-//            NSDictionary *userInfo = @{ NSLocalizedDescriptionKey : localizedErrorString };
-//            NSError *error = [NSError errorWithDomain:AppErrorDomain code:4 userInfo:userInfo];
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                _completionHandler(0, error);
-//                });
-//        }
-//    }
-//    }
-//    
-//    - (void)cancelCalibration
-//{
-//    @synchronized(self)
-//    {
-//        // Fire the timer early if calibration is being cancelled.
-//        // timerElapsed: will handle reporting the cancellation.
-//        if(self.calibrating)
-//        {
-//            self.calibrating = NO;
-//            [self.timer fire];
-//        }dispatch_get_main_queue
-//    }
-//    }
-//    
+
+
+
 //    - (void)timerElapsed:(id)sender
 
 //{
