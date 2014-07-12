@@ -37,7 +37,7 @@ class CalibrationCalculator : NSObject,CLLocationManagerDelegate {
         rangedBeacons = NSMutableArray()
     }
     
-    func locationManager(manager: CLLocationManager!, didRangeBeacons beacons: AnyObject[]!, inRegion region: CLBeaconRegion!){
+    func locationManager(manager: CLLocationManager!, didRangeBeacons beacons: [AnyObject]!, inRegion region: CLBeaconRegion!){
 
 //        swift's equivalant to @synchronized(self) {}
 //        objc_sync_enter(self)
@@ -59,16 +59,7 @@ class CalibrationCalculator : NSObject,CLLocationManagerDelegate {
         objc_sync_exit(self)
     }
     
-    func timerElapsed(sender:AnyObject){
-        // Bump the completion callback to the UI thread as we'll be updating the UI.
-        var measuredPower:NSInteger = 0;
-        //            NSDictionary *userInfo = @{ NSLocalizedDescriptionKey : localizedErrorString };
-        var localizedErrorString = NSLocalizedString("Calibration is already in progress", comment: "Error string");
-        var userInfo:NSDictionary = NSDictionary(object: localizedErrorString,forKey: NSLocalizedDescriptionKey)
-        var error:NSError = NSError(domain: AppErrorDomain, code: 4, userInfo: userInfo)
-            dispatch_async(dispatch_get_main_queue()) {self.completionHandler(measuredPower, error)} ;
-        
-    }
+    
     
     func performCalibrationWithProgressHandler(progressHandler:((Float)->Void)) {
         objc_sync_enter(self)
@@ -104,6 +95,70 @@ func cancelCalibration(){
         dispatch_get_main_queue()
     objc_sync_exit(self)
     }
+    
+    
+    func timerElapsed(sender:AnyObject){
+        
+        //{
+        //    @synchronized(self)
+        //    {
+                // We can stop ranging at this point as we've either been cancelled or
+                // collected all of the RSSI samples we need.
+        locationManager.stopRangingBeaconsInRegion(region)
+        var blockOfCode:()->Void = {
+            objc_sync_enter(self)
+            var error:NSError?
+            var allBeacons = NSMutableArray()
+            var measuredPower = NSInteger(0)
+            if(self.isCalibrating) {
+                var localizedErrorString = NSLocalizedString("Calibration was cancelled", comment: "Error string");
+                var userInfo:NSDictionary = NSDictionary(object: localizedErrorString,forKey: NSLocalizedDescriptionKey)
+                var error:NSError = NSError(domain: self.AppErrorDomain, code: 2, userInfo: userInfo)
+            } else {
+                
+                self.rangedBeacons.enumerateObjectsUsingBlock({obj, idx, stop in
+                    //                        NSArray *beacons = (NSArray *)obj;
+                    var beacons:NSArray = obj as NSArray
+                    if beacons.count > 1 {
+                        var localizedErrorString = NSLocalizedString("More than one beacon of the specified type was found", comment: "Error string");
+                        var userInfo:NSDictionary = NSDictionary(object: localizedErrorString,forKey: NSLocalizedDescriptionKey)
+                        var error:NSError = NSError(domain: self.AppErrorDomain, code: 1, userInfo: userInfo)
+//                        stop = true
+                    } else {
+                        allBeacons.addObjectsFromArray(beacons)
+                    }
+                    
+                    }
+                    )
+                if allBeacons.count <= 0 {
+                    var localizedErrorString = NSLocalizedString("No beacon of the specified type was found", comment: "Error string");
+                    var userInfo:NSDictionary = NSDictionary(object: localizedErrorString,forKey: NSLocalizedDescriptionKey)
+                    var error:NSError = NSError(domain: self.AppErrorDomain, code: 3, userInfo: userInfo)
+                } else {
+                    //                        // Measured power is an average of the mid-80th percentile of RSSI samples.
+                    var outlierPadding:UInt = UInt(Float(allBeacons.count) * 0.1)
+                    var sortDescriptor:NSSortDescriptor = NSSortDescriptor(key: "rssi", ascending: true)
+                    allBeacons.sortUsingDescriptors([sortDescriptor])
+   
+                    var sample:NSArray = allBeacons.subarrayWithRange(NSMakeRange(Int(outlierPadding), allBeacons.count - (Int(outlierPadding) * 2)))
+                    measuredPower = sample.valueForKeyPath("avg.rssi").integerValue
+                    
+                }
+              
+            }
+            dispatch_async(dispatch_get_main_queue()) {self.completionHandler(measuredPower, error!)} ;
+            self.isCalibrating = false
+            self.rangedBeacons.removeAllObjects()
+//            progressHandler = nil
+            objc_sync_exit(self)
+        }
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), blockOfCode)
+               
+
+        
+    }
+    
+    
 }
 
 
