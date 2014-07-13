@@ -78,7 +78,6 @@ class RangingViewController : UITableViewController, CLLocationManagerDelegate {
         }
         let ranges = [CLProximity.Unknown,CLProximity.Immediate,CLProximity.Near,CLProximity.Far]
         for range in ranges {
-            var a = 2
             var proximityBeacons: NSArray = allBeacons.filteredArrayUsingPredicate(NSPredicate(format: "proximity = %d",  [range.toRaw()]))
         }
         self.tableView.reloadData()

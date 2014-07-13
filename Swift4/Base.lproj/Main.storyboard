@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6154.21" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="HwR-DW-ZOS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6185.7" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="HwR-DW-ZOS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6153.13"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6181.2"/>
     </dependencies>
     <scenes>
-        <!--Monitoring View Controller - Monitor-->
+        <!--Monitor-->
         <scene sceneID="fHG-lB-KnP">
             <objects>
                 <tableViewController title="Monitor" id="KHq-My-RDL" customClass="MonitoringViewController" customModule="Swift4" customModuleProvider="target" sceneMemberID="viewController">
@@ -12,7 +12,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                         <sections>
                             <tableViewSection id="i5P-ea-i3f">
                                 <cells>
@@ -231,7 +230,7 @@
             </objects>
             <point key="canvasLocation" x="964" y="-400"/>
         </scene>
-        <!--Table View Controller - SwiftLocate-->
+        <!--SwiftLocate-->
         <scene sceneID="smW-Zh-WAh">
             <objects>
                 <tableViewController title="SwiftLocate" clearsSelectionOnViewWillAppear="NO" id="7bK-jq-Zjz" sceneMemberID="viewController">
@@ -239,7 +238,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                         <sections>
                             <tableViewSection id="zcC-u1-ixg">
                                 <cells>
@@ -353,7 +351,7 @@
             </objects>
             <point key="canvasLocation" x="214" y="-997"/>
         </scene>
-        <!--Configuration View Controller - Configuration-->
+        <!--Configuration-->
         <scene sceneID="10I-AU-THd">
             <objects>
                 <tableViewController title="Configuration" id="k85-ck-qbf" customClass="ConfigurationViewController" customModule="Swift4" customModuleProvider="target" sceneMemberID="viewController">
@@ -361,7 +359,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                         <sections>
                             <tableViewSection id="PTE-Cx-6gQ">
                                 <cells>
@@ -526,7 +523,7 @@
             </objects>
             <point key="canvasLocation" x="956" y="-968"/>
         </scene>
-        <!--View Controller - UUID-->
+        <!--UUID-->
         <scene sceneID="kJC-IA-xp2">
             <objects>
                 <tableViewController id="gSO-ou-vpa" customClass="UUIDViewController" customModule="Swift4" customModuleProvider="target" sceneMemberID="viewController">
@@ -534,7 +531,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="480" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="jBs-Ni-zgt" style="IBUITableViewCellStyleDefault" id="xFT-pb-szV">
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
@@ -588,7 +584,7 @@
             </objects>
             <point key="canvasLocation" x="-478" y="-997"/>
         </scene>
-        <!--Ranging View Controller - Ranging-->
+        <!--Ranging-->
         <scene sceneID="Bax-sX-Xdw">
             <objects>
                 <tableViewController id="kyu-pX-yeH" customClass="RangingViewController" customModule="Swift4" customModuleProvider="target" sceneMemberID="viewController">
@@ -596,7 +592,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="480" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="7UE-VW-rlL" detailTextLabel="RjL-zk-DuR" style="IBUITableViewCellStyleSubtitle" id="3zc-3U-TRx">
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
@@ -635,15 +630,14 @@
             </objects>
             <point key="canvasLocation" x="964" y="-1580"/>
         </scene>
-        <!--Calibration Begin View Controller - Calibration-->
+        <!--Calibration-->
         <scene sceneID="MvR-Lb-ueW">
             <objects>
-                <tableViewController id="Ji9-YK-ShX" customClass="APLCalibrationBeginViewController" sceneMemberID="viewController">
+                <tableViewController id="Ji9-YK-ShX" customClass="CalibrationBeginViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="hZT-t2-LV3">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BeaconCell" textLabel="L1T-mI-1tg" detailTextLabel="13w-G0-5h4" rowHeight="44" style="IBUITableViewCellStyleSubtitle" id="fhT-Mx-Kbp">
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
@@ -669,7 +663,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ProgressCell" rowHeight="66" id="0MO-4i-YcG" customClass="APLProgressTableViewCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ProgressCell" rowHeight="66" id="0MO-4i-YcG" customClass="ProgressTableViewCell">
                                 <rect key="frame" x="0.0" y="66" width="320" height="66"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0MO-4i-YcG" id="gML-xh-XrK">
