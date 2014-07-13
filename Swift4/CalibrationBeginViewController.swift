@@ -124,37 +124,28 @@ class CalibrationBeginViewController: UITableViewController, CLLocationManagerDe
         return sectionValues[adjustedSection].count
     }
     
-//    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-//        
-//        return cell
-//    }
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        var beaconCellIdentifier = "BeaconCell"
+        var progressCellIdentifier = "ProgressCell"
+        var section = indexPath.section
+        var identifier = inProgress && section == 0 ? progressCellIdentifier : beaconCellIdentifier
+        var cell: AnyObject! = tableView.dequeueReusableCellWithIdentifier(identifier)
+        if identifier == progressCellIdentifier {
+            return cell as ProgressTableViewCell
+        } else if inProgress {
+            section--
+        }
+        var sectionKey: NSNumber = beacons.allKeys[section] as NSNumber
+        var sectionBeacons = beacons[sectionKey] as NSArray
+        var beacon = sectionBeacons[indexPath.row] as CLBeacon
+        cell.textLabel!.text = beacon.proximityUUID.UUIDString
+         var localizedErrorString = NSLocalizedString("Major: %@, Minor: %@, Acc: %.2fm", comment: "format string for detail");
+        cell.detailTextLabel!.text  = NSString(format: localizedErrorString, beacon.major, beacon.minor, beacon.accuracy)
+        
+        return cell as UITableViewCell
+    }
     
-//    - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-//    {
-//    static NSString *beaconCellIdentifier = @"BeaconCell";
-//    static NSString *progressCellIdentifier = @"ProgressCell";
-//    
-//    NSInteger section = indexPath.section;
-//    NSString *identifier = self.inProgress && section == 0 ? progressCellIdentifier : beaconCellIdentifier;
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-//    
-//    if(identifier == progressCellIdentifier)
-//    {
-//    return cell;
-//    }
-//    else if(self.inProgress)
-//    {
-//    section--;
-//    }
-//    
-//    NSNumber *sectionKey = [self.beacons allKeys][section];
-//    CLBeacon *beacon = self.beacons[sectionKey][indexPath.row];
-//    cell.textLabel.text = [beacon.proximityUUID UUIDString];
-//    NSString *formatString = NSLocalizedString(@"Major: %@, Minor: %@, Acc: %.2fm", @"format string for detail");
-//    cell.detailTextLabel.text = [NSString stringWithFormat:formatString, beacon.major, beacon.minor, beacon.accuracy];
-//    
-//    return cell;
-//    }
 
     
 
