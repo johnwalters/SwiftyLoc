@@ -9,5 +9,5 @@
 import UIKit
 
 class CalibrationEndViewController: UITableViewController {
-    
+    var measuredPower:NSInteger = 0
 }

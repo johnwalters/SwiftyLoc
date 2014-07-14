@@ -18,7 +18,7 @@ class CalibrationCalculator : NSObject,CLLocationManagerDelegate {
     var percentComplete:Float? = 0.0
     var AppErrorDomain = "com.example.apple-samplecode.AirLocate"
     var progressHandler:((Float)->Void)? = { progress in }
-    var completionHandler:(NSInteger,NSError)->Void = { measuredPower,error in }
+    var completionHandler:(NSInteger,NSError?)->Void = { measuredPower,error in }
     let increment1:Float = 1.0
     init(){
         locationManager = CLLocationManager()
@@ -27,11 +27,11 @@ class CalibrationCalculator : NSObject,CLLocationManagerDelegate {
 
     }
     
-    convenience init(region: CLBeaconRegion, progressHandler:((Float)->Void)){
+    convenience init(region: CLBeaconRegion, completionHandler:((NSInteger,NSError?)->Void)){
         self.init()
         locationManager.delegate = self
         self.region = region
-        self.progressHandler = progressHandler
+        self.completionHandler = completionHandler
         rangedBeacons = NSMutableArray()
     }
     
