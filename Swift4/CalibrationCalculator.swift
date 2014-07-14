@@ -17,7 +17,7 @@ class CalibrationCalculator : NSObject,CLLocationManagerDelegate {
     var timer:NSTimer
     var percentComplete:Float? = 0.0
     var AppErrorDomain = "com.example.apple-samplecode.AirLocate"
-    var progressHandler:(Float)->Void = { progress in }
+    var progressHandler:((Float)->Void)? = { progress in }
     var completionHandler:(NSInteger,NSError)->Void = { measuredPower,error in }
     let increment1:Float = 1.0
     init(){
@@ -45,15 +45,16 @@ class CalibrationCalculator : NSObject,CLLocationManagerDelegate {
 //        http://stackoverflow.com/questions/24045895/what-is-the-swift-equivalent-to-objective-cs-synchronized
         objc_sync_enter(self)
         rangedBeacons.addObject(beacons)
-//        if progressHandler {
+        if let phClosure = progressHandler {
             dispatch_async(dispatch_get_main_queue(),
                 {
                     var bump:Float = (self.increment1 + 1)
                     bump = bump / Float(self.CalibrationDwell)
                     self.percentComplete = bump
-                    self.progressHandler(self.percentComplete!)
+                    self.progressHandler!(self.percentComplete!)
                 }
         )
+        }
         objc_sync_exit(self)
     }
     
