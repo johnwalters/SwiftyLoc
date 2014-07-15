@@ -35,7 +35,7 @@ class CalibrationCalculator : NSObject,CLLocationManagerDelegate {
         rangedBeacons = NSMutableArray()
     }
     
-    func locationManager(manager: CLLocationManager!, didRangeBeacons beacons: [AnyObject]!, inRegion region: CLBeaconRegion!){
+    func locationManager(manager: CLLocationManager!, didRangeBeacons beacons: AnyObject[]!, inRegion region: CLBeaconRegion!){
 
 //        swift's equivalant to @synchronized(self) {}
 //        objc_sync_enter(self)

@@ -11,14 +11,14 @@ import CoreLocation;
 
 
 class CalibrationBeginViewController: UITableViewController, CLLocationManagerDelegate {
-
+//class CalibrationBeginViewController: UITableViewController, CLLocationManagerDelegate {
     let BeaconIdentifier = "com.example.apple-samplecode.AirLocate"
     var _locationManager:CLLocationManager
     var _beacons:NSMutableDictionary
     var _rangedRegions:NSMutableArray
     var _calculator:CalibrationCalculator?
     var _isInProgress = false
-    
+
     init(coder: NSCoder!) {
         _beacons = NSMutableDictionary()
         _locationManager = CLLocationManager()
@@ -46,7 +46,7 @@ class CalibrationBeginViewController: UITableViewController, CLLocationManagerDe
         // Start ranging to show the beacons available for calibration.
         self.startRangingAllRegions()
     }
-    
+
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
         
@@ -56,18 +56,18 @@ class CalibrationBeginViewController: UITableViewController, CLLocationManagerDe
     }
     
     func startRangingAllRegions(){
-        for region in _rangedRegions{
+        for region : AnyObject in _rangedRegions{
             _locationManager.startRangingBeaconsInRegion(region as CLBeaconRegion)
         }
     }
     
     func stopRangingAllRegions(){
-        for region in _rangedRegions{
+        for region : AnyObject in _rangedRegions{
             _locationManager.stopRangingBeaconsInRegion(region as CLBeaconRegion)
         }
     }
     
-    func locationManager(manager: CLLocationManager!, didRangeBeacons beaconsObj: [AnyObject]!, inRegion region: CLBeaconRegion!)
+    func locationManager(manager: CLLocationManager!, didRangeBeacons beaconsObj: AnyObject[]!, inRegion region: CLBeaconRegion!)
     {
             // CoreLocation will call this delegate method at 1 Hz with updated range information.
             // Beacons will be categorized and displayed by proximity.
@@ -147,7 +147,7 @@ class CalibrationBeginViewController: UITableViewController, CLLocationManagerDe
         return cell as UITableViewCell
     }
     
-    
+
     
     override func tableView(tableView: UITableView!, heightForRowAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
         if _isInProgress && indexPath.section == 0 {
@@ -161,17 +161,19 @@ class CalibrationBeginViewController: UITableViewController, CLLocationManagerDe
         var sectionKey = _beacons.allKeys[indexPath.section] as NSArray
         var sectionKeyBeacon = _beacons[sectionKey] as NSArray
         var beacon = sectionKeyBeacon[indexPath.row] as CLBeacon
-        
+
         if !_isInProgress {
             var region:CLBeaconRegion? = nil
-            if (beacon.proximityUUID && beacon.major && beacon.minor) {
-                var beaconMajor: UInt16 = UInt16(beacon.major.shortValue)
-                var beaconMinor: UInt16 = UInt16(beacon.minor.shortValue)
-                region = CLBeaconRegion(proximityUUID: beacon.proximityUUID, major: beaconMajor, minor: beaconMinor, identifier: BeaconIdentifier)
-            } else if (beacon.proximityUUID && beacon.major) {
+            var beaconMajor: UInt16 = UInt16(beacon.major.shortValue)
+            var beaconMinor: UInt16 = UInt16(beacon.minor.shortValue)
+            
+            // from AirLocation: if(beacon.proximityUUID && beacon.major && beacon.minor)
+            if (beaconMajor != 0 && beaconMinor != 0) {
+                region = CLBeaconRegion(proximityUUID: beacon.proximityUUID, major: 0, minor: 0, identifier: BeaconIdentifier)
+            } else if (beaconMajor != 0) {
                 var beaconMajor: UInt16 = UInt16(beacon.major.shortValue)
                 region = CLBeaconRegion(proximityUUID: beacon.proximityUUID, major: beaconMajor, identifier: BeaconIdentifier)
-            } else if (beacon.proximityUUID) {
+            } else if (true) {
                 region = CLBeaconRegion(proximityUUID: beacon.proximityUUID, identifier: BeaconIdentifier)
             }
             
@@ -216,76 +218,6 @@ class CalibrationBeginViewController: UITableViewController, CLLocationManagerDe
         }
     }
 
-   //
-//    - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-//    {
-//    NSNumber *sectionKey = [self.beacons allKeys][indexPath.section];
-//    CLBeacon *beacon = self.beacons[sectionKey][indexPath.row];
-//    
-//    if(!self.inProgress)
-//    {
-//    CLBeaconRegion *region = nil;
-//    if(beacon.proximityUUID && beacon.major && beacon.minor)
-//    {
-//    region = [[CLBeaconRegion alloc] initWithProximityUUID:beacon.proximityUUID major:[beacon.major shortValue] minor:[beacon.minor shortValue] identifier:BeaconIdentifier];
-//    }
-//    else if(beacon.proximityUUID && beacon.major)
-//    {
-//    region = [[CLBeaconRegion alloc] initWithProximityUUID:beacon.proximityUUID major:[beacon.major shortValue] identifier:BeaconIdentifier];
-//    }
-//    else if(beacon.proximityUUID)
-//    {
-//    region = [[CLBeaconRegion alloc] initWithProximityUUID:beacon.proximityUUID identifier:BeaconIdentifier];
-//    }
-//    
-//    if(region)
-//    {
-//    // We can stop ranging to display beacons available for calibration.
-//    [self stopRangingAllRegions];
-//    
-//    // And we'll start the calibration process.
-//    self.calculator = [[APLCalibrationCalculator alloc] initWithRegion:region completionHandler:^(NSInteger measuredPower, NSError *error) {
-//    if(error)
-//    {
-//    // Only display if the view is showing.
-//    if(self.view.window)
-//    {
-//    NSString *title = NSLocalizedString(@"Unable to calibrate device", @"Alert title for calibration begin view controller");
-//    NSString *cancelTitle = NSLocalizedString(@"OK", @"Alert OK title for calibration begin view controller");
-//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:(error.userInfo)[NSLocalizedDescriptionKey] delegate:nil cancelButtonTitle:cancelTitle otherButtonTitles:nil];
-//    [alert show];
-//    
-//    // Resume displaying beacons available for calibration if the calibration process failed.
-//    [self startRangingAllRegions];
-//    }
-//    }
-//    else
-//    {
-//    APLCalibrationEndViewController *endViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"EndViewController"];
-//    endViewController.measuredPower = measuredPower;
-//    [self.navigationController pushViewController:endViewController animated:YES];
-//    }
-//    
-//    self.inProgress = NO;
-//    self.calculator = nil;
-//    
-//    [self.tableView reloadData];
-//    }];
-//    
-//    __weak APLCalibrationBeginViewController *weakSelf = self;
-//    [self.calculator performCalibrationWithProgressHandler:^(float percentComplete) {
-//    [weakSelf updateProgressViewWithProgress:percentComplete];
-//    }];
-//    
-//    self.inProgress = YES;
-//    [self.tableView beginUpdates];
-//    [self.tableView insertSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
-//    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-//    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-//    [self.tableView endUpdates];
-//    [self updateProgressViewWithProgress:0.0];
-//    }
-//    }
-//    }
+
 
 
