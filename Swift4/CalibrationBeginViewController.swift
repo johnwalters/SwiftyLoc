@@ -210,7 +210,25 @@ class CalibrationBeginViewController: UITableViewController, CLLocationManagerDe
                 
                  _calculator = CalibrationCalculator(region: region!, stubCompletionHandler)
                     
+
+                var weakSelf: CalibrationBeginViewController = self
+                var stubProgressHandler:((Float)->Void)? = { progress in
+                    weakSelf.updateProgressViewWithProgress(progress)
+                }
+                _calculator!.performCalibrationWithProgressHandler(stubProgressHandler!)
+                _isInProgress = true
+                tableView.beginUpdates()
+                var set = NSIndexSet(index: 0)
                 
+                
+                
+                tableView.insertSections(set, withRowAnimation: UITableViewRowAnimation.Automatic)
+                var indexPath = NSIndexPath(forRow: 0, inSection: 0)
+                tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+                tableView.endUpdates()
+                updateProgressViewWithProgress(0.0)
+                
+
                 }
             
                 
