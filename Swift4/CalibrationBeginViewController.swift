@@ -11,7 +11,6 @@ import CoreLocation;
 
 
 class CalibrationBeginViewController: UITableViewController, CLLocationManagerDelegate {
-//class CalibrationBeginViewController: UITableViewController, CLLocationManagerDelegate {
     let BeaconIdentifier = "com.example.apple-samplecode.AirLocate"
     var _locationManager:CLLocationManager
     var _beacons:NSMutableDictionary
@@ -67,7 +66,7 @@ class CalibrationBeginViewController: UITableViewController, CLLocationManagerDe
         }
     }
     
-    func locationManager(manager: CLLocationManager!, didRangeBeacons beaconsObj: AnyObject[]!, inRegion region: CLBeaconRegion!)
+    func locationManager(manager: CLLocationManager!, didRangeBeacons beaconsObj: [AnyObject]!, inRegion region: CLBeaconRegion!)
     {
             // CoreLocation will call this delegate method at 1 Hz with updated range information.
             // Beacons will be categorized and displayed by proximity.

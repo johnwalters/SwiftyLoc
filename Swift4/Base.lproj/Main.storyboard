@@ -708,6 +708,41 @@
             </objects>
             <point key="canvasLocation" x="972" y="211"/>
         </scene>
+        <!--Calibration End View Controller-->
+        <scene sceneID="aTA-ol-4Wu">
+            <objects>
+                <viewController storyboardIdentifier="EndViewController" id="9wb-q2-5W0" customClass="CalibrationEndViewController" customModule="Swift4" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="51R-KN-TP4"/>
+                        <viewControllerLayoutGuide type="bottom" id="ReK-hl-MBF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ZxZ-ag-Be5">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1g4-pM-9Kh">
+                                <rect key="frame" x="20" y="230" width="440" height="20"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerY" secondItem="1g4-pM-9Kh" secondAttribute="centerY" id="Gvp-E8-jbW"/>
+                            <constraint firstItem="1g4-pM-9Kh" firstAttribute="leading" secondItem="ZxZ-ag-Be5" secondAttribute="leading" constant="20" id="aAN-TG-8jN"/>
+                            <constraint firstAttribute="trailing" secondItem="1g4-pM-9Kh" secondAttribute="trailing" constant="20" id="fvs-UE-ZiD"/>
+                        </constraints>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <connections>
+                        <outlet property="measuredPowerLabel" destination="1g4-pM-9Kh" id="z7N-tb-xnb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MQq-dq-8h6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1596" y="119"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="YvX-ka-yKo"/>

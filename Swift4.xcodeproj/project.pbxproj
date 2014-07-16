@@ -15,8 +15,6 @@
 		07A3B835197258DF00081464 /* CalibrationEndViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A3B834197258DF00081464 /* CalibrationEndViewController.swift */; };
 		07A3B83719725AE900081464 /* ProgressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A3B83619725AE900081464 /* ProgressTableViewCell.swift */; };
 		07B2C2B619574D89007342CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B2C2B519574D89007342CC /* AppDelegate.swift */; };
-		07B2C2B819574D89007342CC /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B2C2B719574D89007342CC /* MasterViewController.swift */; };
-		07B2C2BA19574D89007342CC /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B2C2B919574D89007342CC /* DetailViewController.swift */; };
 		07B2C2BD19574D89007342CC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07B2C2BB19574D89007342CC /* Main.storyboard */; };
 		07B2C2BF19574D89007342CC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07B2C2BE19574D89007342CC /* Images.xcassets */; };
 		07B2C2CB19574D89007342CC /* Swift4Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B2C2CA19574D89007342CC /* Swift4Tests.swift */; };
@@ -26,7 +24,6 @@
 		07B2C2DB19575DC1007342CC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B2C2DA19575DC1007342CC /* UIKit.framework */; };
 		07B2C2DD19575DC9007342CC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B2C2DC19575DC9007342CC /* Foundation.framework */; };
 		07B2C2DF19575DD1007342CC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B2C2DE19575DD1007342CC /* CoreGraphics.framework */; settings = {ATTRIBUTES = (Required, ); }; };
-		07DDDDE0196399F100781AF6 /* TestMonitoringViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DDDDDF196399F100781AF6 /* TestMonitoringViewController.swift */; };
 		07DE10EA1960A0DA006D47FC /* MonitoringViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DE10E91960A0DA006D47FC /* MonitoringViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -51,8 +48,6 @@
 		07B2C2B019574D89007342CC /* Swift4.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Swift4.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07B2C2B419574D89007342CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		07B2C2B519574D89007342CC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		07B2C2B719574D89007342CC /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
-		07B2C2B919574D89007342CC /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		07B2C2BC19574D89007342CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		07B2C2BE19574D89007342CC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		07B2C2C419574D89007342CC /* Swift4Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Swift4Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -64,7 +59,6 @@
 		07B2C2DA19575DC1007342CC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		07B2C2DC19575DC9007342CC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		07B2C2DE19575DD1007342CC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		07DDDDDF196399F100781AF6 /* TestMonitoringViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestMonitoringViewController.swift; sourceTree = "<group>"; };
 		07DE10E91960A0DA006D47FC /* MonitoringViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonitoringViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -119,12 +113,10 @@
 				07A3B834197258DF00081464 /* CalibrationEndViewController.swift */,
 				07B2C2D419575C5C007342CC /* ConfigurationViewController.swift */,
 				07210FB91959BF40007AD523 /* Defaults.swift */,
-				07B2C2B919574D89007342CC /* DetailViewController.swift */,
-				07B2C2B719574D89007342CC /* MasterViewController.swift */,
 				07DE10E91960A0DA006D47FC /* MonitoringViewController.swift */,
 				078A23101967416200BF7312 /* RangingViewController.swift */,
+				07A3B83619725AE900081464 /* ProgressTableViewCell.swift */,
 				07B2C2B319574D89007342CC /* Supporting Files */,
-				07DDDDDF196399F100781AF6 /* TestMonitoringViewController.swift */,
 				074C7F9B195E8C3600772590 /* UUIDViewController.swift */,
 			);
 			path = Swift4;
@@ -134,7 +126,6 @@
 			isa = PBXGroup;
 			children = (
 				07B2C2BB19574D89007342CC /* Main.storyboard */,
-				07A3B83619725AE900081464 /* ProgressTableViewCell.swift */,
 				07B2C2BE19574D89007342CC /* Images.xcassets */,
 				07B2C2B419574D89007342CC /* Info.plist */,
 			);
@@ -271,15 +262,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				07A3B8331972173300081464 /* CalibrationBeginViewController.swift in Sources */,
-				07B2C2BA19574D89007342CC /* DetailViewController.swift in Sources */,
 				07B2C2D519575C5C007342CC /* ConfigurationViewController.swift in Sources */,
 				07A3B83719725AE900081464 /* ProgressTableViewCell.swift in Sources */,
 				078A23111967416200BF7312 /* RangingViewController.swift in Sources */,
-				07DDDDE0196399F100781AF6 /* TestMonitoringViewController.swift in Sources */,
 				070740131969D7F800E39C5B /* CalibrationCalculator.swift in Sources */,
 				07210FBA1959BF40007AD523 /* Defaults.swift in Sources */,
 				074C7F9C195E8C3600772590 /* UUIDViewController.swift in Sources */,
-				07B2C2B819574D89007342CC /* MasterViewController.swift in Sources */,
 				07DE10EA1960A0DA006D47FC /* MonitoringViewController.swift in Sources */,
 				07B2C2B619574D89007342CC /* AppDelegate.swift in Sources */,
 				07A3B835197258DF00081464 /* CalibrationEndViewController.swift in Sources */,
