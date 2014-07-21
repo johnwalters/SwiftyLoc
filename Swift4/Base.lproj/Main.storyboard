@@ -345,7 +345,7 @@
                             <outlet property="delegate" destination="7bK-jq-Zjz" id="RA6-mI-bju"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="SwiftLocate" id="Zdf-7t-Un8"/>
+                    <navigationItem key="navigationItem" title="Swift 4" id="Zdf-7t-Un8"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rux-fX-hf1" sceneMemberID="firstResponder"/>
             </objects>
@@ -377,6 +377,9 @@
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JGo-Ih-pVk">
                                                     <rect key="frame" x="250" y="5" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="toggleEnabled:" destination="k85-ck-qbf" eventType="valueChanged" id="Irh-mJ-gcv"/>
+                                                    </connections>
                                                 </switch>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -745,6 +748,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="YvX-ka-yKo"/>
+        <segue reference="Waa-1h-Bjk"/>
     </inferredMetricsTieBreakers>
 </document>

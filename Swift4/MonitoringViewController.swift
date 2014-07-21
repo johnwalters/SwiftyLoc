@@ -49,10 +49,18 @@ class MonitoringViewController : UITableViewController, CLLocationManagerDelegat
         if(region){
             enabled = true;
             uuid = region!.proximityUUID;
-            major = region!.major;
-            majorTextField.text = major.stringValue
-            minor = region!.minor;
-            minorTextField.text = minor.stringValue
+            if(region!.major){
+                 major = region!.major;
+                majorTextField.text = major.stringValue
+            }
+            
+            if(region!.minor){
+                minor = region!.minor;
+                minorTextField.text = minor.stringValue
+            }
+           
+            
+           
             notifyOnEntry = region!.notifyOnEntry;
             notifyOnExit = region!.notifyOnExit;
             notifyOnDisplay = region!.notifyEntryStateOnDisplay;

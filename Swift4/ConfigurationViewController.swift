@@ -12,7 +12,7 @@ import CoreBluetooth;
 
 class ConfigurationViewController: UITableViewController,CBPeripheralManagerDelegate, UITextFieldDelegate {
     
-     
+    let _debugMode = true
     var peripheralManager: CBPeripheralManager?;
     var region: CLBeaconRegion?;
     var power:NSNumber?;
@@ -146,7 +146,12 @@ class ConfigurationViewController: UITableViewController,CBPeripheralManagerDele
             peripheralData = region!.peripheralDataWithMeasuredPower(power)
             // The region's peripheral data contains the CoreBluetooth-specific data we need to advertise.
             if(peripheralData){
+                println("start Advertising with uuid " + uuid.UUIDString)
+                popupDebugAlert("start Advertising", message: "start Advertising with uuid " + uuid.UUIDString)
                 peripheralManager!.startAdvertising(peripheralData)
+            } else {
+                println("Advertising not enabled")
+                popupDebugAlert("Advertising not enabled", message: "" )
             }
         }
 
@@ -178,6 +183,16 @@ class ConfigurationViewController: UITableViewController,CBPeripheralManagerDele
         var uuidSelector : UUIDViewController = sender.sourceViewController as UUIDViewController
         self.uuid = uuidSelector.uuid!
         updateAdvertisedRegion()
+    }
+    
+    func popupDebugAlert(title:NSString, message:NSString) {
+        if(!_debugMode) {return}
+        let alert = UIAlertView()
+        alert.title = title
+        alert.message = message
+        alert.addButtonWithTitle("OK")
+        alert.show()
+
     }
 
     
