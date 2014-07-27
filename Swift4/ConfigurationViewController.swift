@@ -17,11 +17,11 @@ class ConfigurationViewController: UITableViewController,CBPeripheralManagerDele
     var region: CLBeaconRegion?;
     var power:NSNumber?;
     
-    @IBOutlet var enabledSwitch: UISwitch
-    @IBOutlet weak var majorTextField: UITextField
-    @IBOutlet var uuidTextField: UITextField
-    @IBOutlet var minorTextField: UITextField
-    @IBOutlet var powerTextField: UITextField
+    @IBOutlet var enabledSwitch: UISwitch!
+    @IBOutlet var majorTextField: UITextField!
+    @IBOutlet var uuidTextField: UITextField!
+    @IBOutlet var minorTextField: UITextField!
+    @IBOutlet var powerTextField: UITextField!
 
     var enabled:Bool=false;
     var uuid:NSUUID = NSUUID(UUIDString: "")

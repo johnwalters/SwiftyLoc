@@ -12,7 +12,7 @@ class CalibrationEndViewController: UIViewController {
     
     var measuredPower:NSInteger = 0
     
-    @IBOutlet var measuredPowerLabel: UILabel
+    @IBOutlet var measuredPowerLabel: UILabel!
     
     func doneButtonTapped(sender:AnyObject) {
         // [self.navigationController popToRootViewControllerAnimated:YES];

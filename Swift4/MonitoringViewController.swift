@@ -25,14 +25,14 @@ class MonitoringViewController : UITableViewController, CLLocationManagerDelegat
     var doneButton: UIBarButtonItem?
     
     
-    @IBOutlet var enabledSwitch: UISwitch
-    @IBOutlet var notifyOnEntrySwitch: UISwitch
-    @IBOutlet var notifyOnExitSwitch: UISwitch
-    @IBOutlet var notifyOnDisplaySwitch: UISwitch
-    @IBOutlet var uuidTextField: UITextField
-    @IBOutlet var minorTextField: UITextField
+    @IBOutlet var enabledSwitch: UISwitch!
+    @IBOutlet var notifyOnEntrySwitch: UISwitch!
+    @IBOutlet var notifyOnExitSwitch: UISwitch!
+    @IBOutlet var notifyOnDisplaySwitch: UISwitch!
+    @IBOutlet var uuidTextField: UITextField!
+    @IBOutlet var minorTextField: UITextField!
     
-    @IBOutlet var majorTextField: UITextField
+    @IBOutlet var majorTextField: UITextField!
     override func viewDidLoad(){
         
         super.viewDidLoad()
